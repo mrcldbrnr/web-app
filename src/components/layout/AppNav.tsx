@@ -32,11 +32,9 @@ export function AppNav() {
     <>
       <header className="sticky top-0 z-30 border-b border-line bg-white/90 backdrop-blur">
         <div className="mx-auto flex h-16 max-w-6xl items-center gap-6 px-4 sm:px-6">
-          <Link
-            href="/"
-            className="text-[17px] font-extrabold tracking-tight text-ink"
-          >
-            myown
+          <Link href="/" aria-label="myown – zum Dashboard" className="shrink-0">
+            {/* eslint-disable-next-line @next/next/no-img-element -- statisches SVG-Logo aus /public */}
+            <img src="/logo-myown.svg" alt="myown" className="h-6 w-auto" />
           </Link>
 
           <nav aria-label="Hauptnavigation" className="hidden md:block">
