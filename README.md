@@ -1,4 +1,4 @@
-# Inventar – Persönliches Inventar
+# myown – Persönliches Inventar
 
 Eine responsive Web-App, mit der Privatpersonen ihre physischen Besitztümer
 zentral erfassen, finden und verwalten können: Gegenstände mit Standort,

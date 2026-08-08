@@ -36,7 +36,7 @@ export function AppNav() {
             href="/"
             className="text-[17px] font-extrabold tracking-tight text-ink"
           >
-            Inventar
+            myown
           </Link>
 
           <nav aria-label="Hauptnavigation" className="hidden md:block">

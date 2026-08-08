@@ -12,7 +12,7 @@ const figtree = Figtree({
 });
 
 export const metadata: Metadata = {
-  title: "Inventar – Persönliches Inventar",
+  title: "myown – Persönliches Inventar",
   description:
     "Physische Besitztümer zentral erfassen, finden und verwalten: Standort, Kaufpreis, Zustand, Status und Packlisten.",
 };
