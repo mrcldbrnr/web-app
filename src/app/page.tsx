@@ -8,8 +8,8 @@ import { InventoryOverview } from "@/components/dashboard/InventoryOverview";
 export default function DashboardPage() {
   return (
     <div className="space-y-10 sm:space-y-12">
-      <div className="space-y-5">
-        <h1 className="page-title">Übersicht</h1>
+      <div className="mx-auto max-w-2xl space-y-5 text-center">
+        <h1 className="page-title">Was suchst du?</h1>
         <DashboardSearch />
       </div>
 

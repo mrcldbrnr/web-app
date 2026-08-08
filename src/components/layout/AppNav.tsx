@@ -31,13 +31,16 @@ export function AppNav() {
   return (
     <>
       <header className="sticky top-0 z-30 border-b border-line bg-white/90 backdrop-blur">
-        <div className="mx-auto flex h-16 max-w-6xl items-center gap-6 px-4 sm:px-6">
+        <div className="relative mx-auto flex h-16 max-w-6xl items-center gap-6 px-4 sm:px-6">
           <Link href="/" aria-label="myown – zum Dashboard" className="shrink-0">
             {/* eslint-disable-next-line @next/next/no-img-element -- statisches SVG-Logo aus /public */}
             <img src="/logo-myown.svg" alt="myown" className="h-6 w-auto" />
           </Link>
 
-          <nav aria-label="Hauptnavigation" className="hidden md:block">
+          <nav
+            aria-label="Hauptnavigation"
+            className="absolute left-1/2 hidden -translate-x-1/2 md:block"
+          >
             <ul className="flex items-center gap-1">
               {NAV_ITEMS.map((item) => (
                 <li key={item.href}>
@@ -47,7 +50,7 @@ export function AppNav() {
                       isActive(pathname, item.href) ? "page" : undefined
                     }
                     className={cn(
-                      "rounded-full px-4 py-2 text-[15px] font-semibold transition-colors",
+                      "rounded-full px-4 py-2 text-[21px] font-semibold transition-colors",
                       isActive(pathname, item.href)
                         ? "bg-surface-soft text-ink"
                         : "text-muted hover:text-ink",
