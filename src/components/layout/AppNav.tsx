@@ -34,7 +34,7 @@ export function AppNav() {
         <div className="relative mx-auto flex h-16 max-w-6xl items-center gap-6 px-4 sm:px-6">
           <Link href="/" aria-label="myown – zum Dashboard" className="shrink-0">
             {/* eslint-disable-next-line @next/next/no-img-element -- statisches SVG-Logo aus /public */}
-            <img src="/logo-myown.svg" alt="myown" className="h-6 w-auto" />
+            <img src="/logo-myown.svg" alt="myown" className="h-8 w-auto" />
           </Link>
 
           <nav
