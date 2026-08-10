@@ -52,9 +52,19 @@ export function ItemListRow({
             <p className="mt-0.5 truncate text-[13px] text-muted">{meta}</p>
           )}
           <div className="mt-1.5 flex flex-wrap items-center gap-1.5 sm:hidden">
-            {retired && <Badge tone="solid">Aussortiert</Badge>}
-            <ConditionBadge condition={item.condition} />
-            {!retired && <StatusBadge status={item.status} />}
+            {retired ? (
+              <>
+                <Badge tone="solid">Aussortiert</Badge>
+                {item.statusData.reason && (
+                  <Badge>{item.statusData.reason}</Badge>
+                )}
+              </>
+            ) : (
+              <>
+                <ConditionBadge condition={item.condition} />
+                <StatusBadge status={item.status} />
+              </>
+            )}
             {price && (
               <span className="text-[13px] font-semibold text-ink tabular-nums">
                 {price}
@@ -64,9 +74,17 @@ export function ItemListRow({
         </div>
 
         <div className="hidden shrink-0 items-center gap-2 sm:flex">
-          {retired && <Badge tone="solid">Aussortiert</Badge>}
-          <ConditionBadge condition={item.condition} />
-          {!retired && <StatusBadge status={item.status} />}
+          {retired ? (
+            <>
+              <Badge tone="solid">Aussortiert</Badge>
+              {item.statusData.reason && <Badge>{item.statusData.reason}</Badge>}
+            </>
+          ) : (
+            <>
+              <ConditionBadge condition={item.condition} />
+              <StatusBadge status={item.status} />
+            </>
+          )}
         </div>
 
         {price && (
