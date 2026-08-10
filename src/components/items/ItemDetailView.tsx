@@ -86,14 +86,30 @@ export function ItemDetailView({ id }: { id: string }) {
 
   return (
     <div className="space-y-8">
-      <button
-        type="button"
-        onClick={() => router.back()}
-        className="inline-flex items-center gap-2 text-[14px] font-semibold text-muted hover:text-ink"
-      >
-        <ArrowLeftIcon className="h-4 w-4" />
-        Zurück
-      </button>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <button
+          type="button"
+          onClick={() => router.back()}
+          className="inline-flex items-center gap-2 text-[14px] font-semibold text-muted hover:text-ink"
+        >
+          <ArrowLeftIcon className="h-4 w-4" />
+          Zurück
+        </button>
+
+        <div className="flex flex-wrap gap-2">
+          {data.packingLists.length > 0 && !retired && (
+            <Button variant="secondary" onClick={() => setPackingOpen(true)}>
+              Zu Packliste hinzufügen
+            </Button>
+          )}
+          <Link
+            href={`/items/${item.id}/edit`}
+            className={buttonClass("primary")}
+          >
+            Bearbeiten
+          </Link>
+        </div>
+      </div>
 
       <div className="grid gap-6 sm:gap-8 md:grid-cols-[minmax(0,340px)_1fr]">
         <ItemImage
@@ -125,27 +141,16 @@ export function ItemDetailView({ id }: { id: string }) {
 
           {basics.length > 0 && <DetailRows rows={basics} />}
 
-          <div className="flex flex-wrap gap-2 pt-1">
-            <Link
-              href={`/items/${item.id}/edit`}
-              className={buttonClass("primary")}
-            >
-              Bearbeiten
-            </Link>
+          <div className="flex flex-wrap justify-end gap-2 pt-1">
+            <Button variant="secondary" onClick={() => setLinkPickerOpen(true)}>
+              Gegenstand verknüpfen
+            </Button>
             <Link
               href={`/items/new?from=${item.id}`}
               className={buttonClass("secondary")}
             >
               Duplizieren
             </Link>
-            <Button variant="secondary" onClick={() => setLinkPickerOpen(true)}>
-              Gegenstand verknüpfen
-            </Button>
-            {data.packingLists.length > 0 && !retired && (
-              <Button variant="secondary" onClick={() => setPackingOpen(true)}>
-                Zu Packliste hinzufügen
-              </Button>
-            )}
             <Button variant="danger" onClick={() => setConfirmDelete(true)}>
               Löschen
             </Button>
