@@ -29,6 +29,11 @@ const TONE_CLASSES: Record<
     panel: "bg-notice-soft",
     label: "text-notice",
   },
+  orange: {
+    border: "border-orange/30",
+    panel: "bg-orange-soft",
+    label: "text-orange",
+  },
   alert: {
     border: "border-alert/30",
     panel: "bg-alert-soft",

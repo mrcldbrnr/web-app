@@ -1,9 +1,14 @@
-import { ATTENTION_STATUSES, statusLabel } from "@/lib/constants";
+import {
+  ATTENTION_STATUSES,
+  CONDITIONS,
+  STATUSES,
+  statusLabel,
+} from "@/lib/constants";
 import { formatDate, isInPast } from "@/lib/format";
-import type { Item, StatusId } from "@/lib/types";
+import type { ConditionId, Item, StatusId } from "@/lib/types";
 
 /** Akzentfarbe der Kachel, passend zum hervorgehobenen Zustand/Status. */
-export type AttentionTone = "info" | "notice" | "alert" | "neutral";
+export type AttentionTone = "info" | "notice" | "orange" | "alert" | "neutral";
 
 export interface AttentionEntry {
   item: Item;
@@ -19,8 +24,9 @@ export interface AttentionEntry {
 function statusTone(status: StatusId): AttentionTone {
   switch (status) {
     case "maintenance_needed":
-    case "in_repair":
       return "notice";
+    case "in_repair":
+      return "orange";
     case "lent_out":
       return "info";
     default:
@@ -106,5 +112,26 @@ export function getAttentionEntries(
     entries.push({ item, label, note, tone });
   }
 
+  entries.sort((a, b) => {
+    const conditionDiff =
+      conditionRank(a.item.condition) - conditionRank(b.item.condition);
+    if (conditionDiff !== 0) return conditionDiff;
+    const statusDiff = statusRank(a.item.status) - statusRank(b.item.status);
+    if (statusDiff !== 0) return statusDiff;
+    return a.item.name.localeCompare(b.item.name, "de-CH");
+  });
+
   return entries;
+}
+
+/** Reihenfolge gemäss CONDITIONS; Gegenstände ohne Zustand werden ans Ende gestellt. */
+function conditionRank(condition?: ConditionId): number {
+  const index = CONDITIONS.findIndex((c) => c.id === condition);
+  return index === -1 ? CONDITIONS.length : index;
+}
+
+/** Reihenfolge gemäss STATUSES; Gegenstände ohne Status werden ans Ende gestellt. */
+function statusRank(status?: StatusId): number {
+  const index = STATUSES.findIndex((s) => s.id === status);
+  return index === -1 ? STATUSES.length : index;
 }
