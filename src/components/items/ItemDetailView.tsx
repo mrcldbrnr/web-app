@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import { ItemImage } from "@/components/items/ItemImage";
 import { ItemPickerModal } from "@/components/items/ItemPickerModal";
+import { PackingListToggleModal } from "@/components/items/PackingListToggleModal";
 import { ConditionBadge, StatusBadge } from "@/components/ui/Badge";
 import { Button, buttonClass } from "@/components/ui/Button";
 import { ConfirmDialog } from "@/components/ui/ConfirmDialog";
@@ -14,7 +15,6 @@ import {
   ChevronRightIcon,
   DocumentIcon,
 } from "@/components/ui/Icons";
-import { Modal } from "@/components/ui/Modal";
 import { categoryLabel } from "@/lib/constants";
 import { useInventory } from "@/lib/data/InventoryProvider";
 import { formatDate, formatFileSize, formatPrice } from "@/lib/format";
@@ -24,11 +24,7 @@ import {
   filledStatusFields,
 } from "@/lib/logic/itemFields";
 import { itemFullLocation } from "@/lib/logic/locations";
-import {
-  addItemsToPackingList,
-  deleteItem,
-  setItemLinks,
-} from "@/lib/logic/mutations";
+import { deleteItem, setItemLinks } from "@/lib/logic/mutations";
 import type { Item } from "@/lib/types";
 
 /** Detailseite: zeigt nur Felder, für die Daten vorhanden sind (PRD 3.4). */
@@ -87,15 +83,6 @@ export function ItemDetailView({ id }: { id: string }) {
     label: field.label,
     value: field.type === "date" ? formatDate(value) : value,
   }));
-
-  const packingListsWithItem = new Set(
-    data.packingEntries
-      .filter((entry) => entry.itemId === item.id)
-      .map((entry) => entry.packingListId),
-  );
-  const availableLists = data.packingLists.filter(
-    (list) => !packingListsWithItem.has(list.id),
-  );
 
   return (
     <div className="space-y-8">
@@ -263,41 +250,11 @@ export function ItemDetailView({ id }: { id: string }) {
         />
       )}
 
-      <Modal
+      <PackingListToggleModal
+        item={item}
         open={packingOpen}
         onClose={() => setPackingOpen(false)}
-        title="Zu Packliste hinzufügen"
-        description={
-          availableLists.length
-            ? "Wähle eine bestehende Packliste."
-            : undefined
-        }
-      >
-        {availableLists.length === 0 ? (
-          <p className="py-4 text-[15px] text-muted">
-            Dieser Gegenstand ist bereits in allen Packlisten enthalten.
-          </p>
-        ) : (
-          <ul className="divide-y divide-line rounded-2xl border border-line">
-            {availableLists.map((list) => (
-              <li key={list.id}>
-                <button
-                  type="button"
-                  className="row-link px-4 py-3.5 text-[15px] font-semibold text-ink"
-                  onClick={() => {
-                    update((current) =>
-                      addItemsToPackingList(current, list.id, [item.id]),
-                    );
-                    setPackingOpen(false);
-                  }}
-                >
-                  {list.name}
-                </button>
-              </li>
-            ))}
-          </ul>
-        )}
-      </Modal>
+      />
     </div>
   );
 }

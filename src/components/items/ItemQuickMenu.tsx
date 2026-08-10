@@ -2,19 +2,14 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { PackingListToggleModal } from "@/components/items/PackingListToggleModal";
 import { ConfirmDialog } from "@/components/ui/ConfirmDialog";
 import { IconButton } from "@/components/ui/Button";
 import { DotsIcon } from "@/components/ui/Icons";
-import { Modal } from "@/components/ui/Modal";
 import { Popover } from "@/components/ui/Popover";
 import { useInventory } from "@/lib/data/InventoryProvider";
 import { duplicateItemValues } from "@/lib/logic/itemFields";
-import {
-  addItemsToPackingList,
-  createItem,
-  deleteItem,
-  type ItemInput,
-} from "@/lib/logic/mutations";
+import { createItem, deleteItem, type ItemInput } from "@/lib/logic/mutations";
 import type { Item } from "@/lib/types";
 
 /**
@@ -31,15 +26,6 @@ export function ItemQuickMenu({ item }: { item: Item }) {
   const [confirmDelete, setConfirmDelete] = useState(false);
 
   const retired = item.status === "retired";
-
-  const packingListsWithItem = new Set(
-    data.packingEntries
-      .filter((entry) => entry.itemId === item.id)
-      .map((entry) => entry.packingListId),
-  );
-  const availableLists = data.packingLists.filter(
-    (list) => !packingListsWithItem.has(list.id),
-  );
 
   const handleDuplicate = () => {
     const input: ItemInput = {
@@ -106,39 +92,11 @@ export function ItemQuickMenu({ item }: { item: Item }) {
         </div>
       </Popover>
 
-      <Modal
+      <PackingListToggleModal
+        item={item}
         open={packingOpen}
         onClose={() => setPackingOpen(false)}
-        title="Zu Packliste hinzufügen"
-        description={
-          availableLists.length ? "Wähle eine bestehende Packliste." : undefined
-        }
-      >
-        {availableLists.length === 0 ? (
-          <p className="py-4 text-[15px] text-muted">
-            Dieser Gegenstand ist bereits in allen Packlisten enthalten.
-          </p>
-        ) : (
-          <ul className="divide-y divide-line rounded-2xl border border-line">
-            {availableLists.map((list) => (
-              <li key={list.id}>
-                <button
-                  type="button"
-                  className="row-link px-4 py-3.5 text-[15px] font-semibold text-ink"
-                  onClick={() => {
-                    update((current) =>
-                      addItemsToPackingList(current, list.id, [item.id]),
-                    );
-                    setPackingOpen(false);
-                  }}
-                >
-                  {list.name}
-                </button>
-              </li>
-            ))}
-          </ul>
-        )}
-      </Modal>
+      />
 
       <ConfirmDialog
         open={confirmDuplicate}
