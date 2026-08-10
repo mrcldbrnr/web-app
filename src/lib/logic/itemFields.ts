@@ -109,7 +109,9 @@ export function filledStatusFields(item: Item) {
  * Vorlage, ausser Identität, Dokumente, Verknüpfungen und Seriennummer –
  * diese sind an den physischen Gegenstand gebunden und nicht übertragbar.
  */
-export function duplicateItemValues(item: Item): Partial<Item> {
+export function duplicateItemValues(
+  item: Item,
+): Omit<Item, "id" | "createdAt" | "updatedAt" | "documents" | "linkedItemIds"> {
   const categoryData = { ...item.categoryData };
   delete categoryData.serialNumber;
 
