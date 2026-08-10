@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ItemImage } from "@/components/items/ItemImage";
 import { SearchIcon } from "@/components/ui/Icons";
 import { categoryLabel } from "@/lib/constants";
@@ -37,16 +37,22 @@ export function DashboardSearch() {
     setOpen(false);
   };
 
+  // Schliesst das Panel bei Klick ausserhalb. Ein onBlur-Handler würde das
+  // Panel schon vor dem Klick auf einen Treffer schliessen und dessen
+  // Navigation verhindern.
+  useEffect(() => {
+    if (!open) return;
+    const onPointerDown = (event: MouseEvent) => {
+      if (!containerRef.current?.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", onPointerDown);
+    return () => document.removeEventListener("mousedown", onPointerDown);
+  }, [open]);
+
   return (
-    <div
-      ref={containerRef}
-      className="relative"
-      onBlur={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget as Node)) {
-          setOpen(false);
-        }
-      }}
-    >
+    <div ref={containerRef} className="relative">
       <div className="relative">
         <SearchIcon className="pointer-events-none absolute top-1/2 left-5 h-5 w-5 -translate-y-1/2 text-muted" />
         <input
