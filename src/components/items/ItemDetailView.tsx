@@ -145,6 +145,12 @@ export function ItemDetailView({ id }: { id: string }) {
             >
               Bearbeiten
             </Link>
+            <Link
+              href={`/items/new?from=${item.id}`}
+              className={buttonClass("secondary")}
+            >
+              Duplizieren
+            </Link>
             <Button variant="secondary" onClick={() => setLinkPickerOpen(true)}>
               Gegenstand verknüpfen
             </Button>

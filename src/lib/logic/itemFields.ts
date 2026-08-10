@@ -103,3 +103,29 @@ export function filledStatusFields(item: Item) {
     .filter((field) => Boolean(item.statusData[field.key]))
     .map((field) => ({ field, value: item.statusData[field.key] }));
 }
+
+/**
+ * Vorbelegung für ein Duplikat: übernimmt alle Werte des Originals als
+ * Vorlage, ausser Identität, Dokumente, Verknüpfungen und Seriennummer –
+ * diese sind an den physischen Gegenstand gebunden und nicht übertragbar.
+ */
+export function duplicateItemValues(item: Item): Partial<Item> {
+  const categoryData = { ...item.categoryData };
+  delete categoryData.serialNumber;
+
+  return {
+    name: item.name,
+    brand: item.brand,
+    image: item.image,
+    category: item.category,
+    locationPrimaryId: item.locationPrimaryId,
+    locationSecondaryId: item.locationSecondaryId,
+    purchaseDate: item.purchaseDate,
+    purchasePrice: item.purchasePrice,
+    condition: item.condition,
+    status: item.status,
+    notes: item.notes,
+    categoryData,
+    statusData: { ...item.statusData },
+  };
+}

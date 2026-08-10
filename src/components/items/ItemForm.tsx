@@ -54,7 +54,7 @@ interface FormState {
   linkedItemIds: string[];
 }
 
-function toFormState(item?: Item): FormState {
+function toFormState(item?: Partial<Item>): FormState {
   return {
     name: item?.name ?? "",
     brand: item?.brand ?? "",
@@ -78,17 +78,22 @@ function toFormState(item?: Item): FormState {
 /** Erfassung und Bearbeitung eines Gegenstands (PRD 3.3). */
 export function ItemForm({
   item,
+  initialValues,
   submitLabel,
   onSubmit,
   onCancel,
 }: {
   item?: Item;
+  /** Vorbelegung für ein neues Duplikat (siehe duplicateItemValues). */
+  initialValues?: Partial<Item>;
   submitLabel: string;
   onSubmit: (input: ItemInput) => void;
   onCancel: () => void;
 }) {
   const { data } = useInventory();
-  const [form, setForm] = useState<FormState>(() => toFormState(item));
+  const [form, setForm] = useState<FormState>(() =>
+    toFormState(item ?? initialValues),
+  );
   const [pendingPrimary, setPendingPrimary] = useState<PrimaryLocation[]>([]);
   const [pendingSecondary, setPendingSecondary] = useState<SecondaryLocation[]>(
     [],
