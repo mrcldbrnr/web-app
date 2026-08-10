@@ -1,13 +1,14 @@
 "use client";
 
+import Link from "next/link";
 import { Suspense, useCallback, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { ActiveFilterChips } from "@/components/inventory/ActiveFilterChips";
 import { FilterPanel } from "@/components/inventory/FilterPanel";
 import { ItemListRow } from "@/components/items/ItemListRow";
-import { Button } from "@/components/ui/Button";
+import { Button, buttonClass } from "@/components/ui/Button";
 import { SelectInput } from "@/components/ui/Field";
-import { FilterIcon, SearchIcon } from "@/components/ui/Icons";
+import { FilterIcon, PlusIcon, SearchIcon } from "@/components/ui/Icons";
 import { CATEGORIES } from "@/lib/constants";
 import { useInventory } from "@/lib/data/InventoryProvider";
 import {
@@ -78,10 +79,16 @@ function InventoryView() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="page-title">Inventar</h1>
-        <p className="muted-label">
-          {visibleItems.length}{" "}
-          {visibleItems.length === 1 ? "Gegenstand" : "Gegenstände"}
-        </p>
+        <div className="flex items-center gap-4">
+          <p className="muted-label">
+            {visibleItems.length}{" "}
+            {visibleItems.length === 1 ? "Gegenstand" : "Gegenstände"}
+          </p>
+          <Link href="/items/new" className={buttonClass("primary")}>
+            <PlusIcon className="h-5 w-5" />
+            Gegenstand erfassen
+          </Link>
+        </div>
       </div>
 
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center">

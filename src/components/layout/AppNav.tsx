@@ -3,12 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/cn";
-import { buttonClass } from "@/components/ui/Button";
-import {
-  PlusIcon,
-  SettingsIcon,
-  SuitcaseIcon,
-} from "@/components/ui/Icons";
+import { SettingsIcon, SuitcaseIcon } from "@/components/ui/Icons";
 
 const NAV_ITEMS = [
   { href: "/", label: "Dashboard" },
@@ -78,13 +73,6 @@ export function AppNav() {
             >
               <SettingsIcon />
             </Link>
-            <Link
-              href="/items/new"
-              className={buttonClass("primary", "md", "hidden sm:inline-flex")}
-            >
-              <PlusIcon className="h-5 w-5" />
-              Hinzufügen
-            </Link>
           </div>
         </div>
       </header>
@@ -110,15 +98,6 @@ export function AppNav() {
               </Link>
             </li>
           ))}
-          <li className="flex flex-1 items-center justify-center">
-            <Link
-              href="/items/new"
-              aria-label="Gegenstand hinzufügen"
-              className="inline-flex h-13 w-13 items-center justify-center rounded-full bg-ink text-white shadow-sm"
-            >
-              <PlusIcon className="h-7 w-7" />
-            </Link>
-          </li>
         </ul>
       </nav>
     </>
