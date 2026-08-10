@@ -8,13 +8,7 @@ import { FilterPanel } from "@/components/inventory/FilterPanel";
 import { ItemListRow } from "@/components/items/ItemListRow";
 import { Button, buttonClass } from "@/components/ui/Button";
 import { SelectInput } from "@/components/ui/Field";
-import {
-  ChevronDownIcon,
-  FilterIcon,
-  PlusIcon,
-  SearchIcon,
-} from "@/components/ui/Icons";
-import { cn } from "@/lib/cn";
+import { FilterIcon, PlusIcon, SearchIcon } from "@/components/ui/Icons";
 import { CATEGORIES } from "@/lib/constants";
 import { useInventory } from "@/lib/data/InventoryProvider";
 import { formatPrice } from "@/lib/format";
@@ -54,7 +48,6 @@ function InventoryView() {
   const [sort, setSort] = useState<SortId>("name_asc");
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [showRetired, setShowRetired] = useState(false);
-  const [summaryVisible, setSummaryVisible] = useState(true);
 
   const activeFilterCount = countActiveFilters(filters);
 
@@ -160,39 +153,17 @@ function InventoryView() {
         onReset={() => setFilters(EMPTY_FILTERS)}
       />
 
-      <div className="card flex items-center justify-between gap-3 px-5 py-3">
-        {summaryVisible ? (
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-1 text-[14px] text-ink">
-            <span>
-              <span className="font-bold">{visibleItems.length}</span>{" "}
-              {visibleItems.length === 1 ? "Gegenstand" : "Gegenstände"}
-            </span>
-            <span>
-              <span className="font-bold">
-                {formatPrice(visibleTotalPrice, data.settings.currencyLabel)}
-              </span>{" "}
-              Kaufpreissumme
-            </span>
-          </div>
-        ) : (
-          <span className="text-[14px] text-muted">Werte ausgeblendet</span>
-        )}
-        <button
-          type="button"
-          onClick={() => setSummaryVisible((visible) => !visible)}
-          aria-expanded={summaryVisible}
-          aria-label={
-            summaryVisible ? "Werte ausblenden" : "Werte anzeigen"
-          }
-          className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-muted hover:bg-surface-soft hover:text-ink"
-        >
-          <ChevronDownIcon
-            className={cn(
-              "h-4 w-4 transition-transform",
-              summaryVisible && "rotate-180",
-            )}
-          />
-        </button>
+      <div className="card flex items-center justify-between gap-3 px-5 py-3 text-[14px] text-ink">
+        <span>
+          <span className="font-bold">{visibleItems.length}</span>{" "}
+          {visibleItems.length === 1 ? "Gegenstand" : "Gegenstände"}
+        </span>
+        <span>
+          Kaufpreissumme{" "}
+          <span className="font-bold">
+            {formatPrice(visibleTotalPrice, data.settings.currencyLabel)}
+          </span>
+        </span>
       </div>
 
       {visibleItems.length === 0 ? (
