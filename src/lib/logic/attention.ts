@@ -96,7 +96,8 @@ export function getAttentionEntries(
       if (!note && overdue) {
         note = `Wartung fällig seit ${formatDate(item.categoryData.nextMaintenance)}`;
       }
-      tone = statusTone(item.status as StatusId);
+      // Zustand «Defekt» hat immer Vorrang vor der Statusfarbe.
+      tone = defective ? "alert" : statusTone(item.status as StatusId);
     } else if (defective) {
       label = "Defekt";
       note = overdue
