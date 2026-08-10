@@ -35,7 +35,7 @@ export default function PackingPage() {
   return (
     <div className="space-y-8">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="page-title">Ich verreise</h1>
+        <h1 className="page-title">Packliste</h1>
         <Link href="/packing/new" className={buttonClass("primary")}>
           <PlusIcon className="h-5 w-5" />
           Packliste erstellen

@@ -13,7 +13,7 @@ import {
 const NAV_ITEMS = [
   { href: "/", label: "Dashboard" },
   { href: "/inventory", label: "Inventar" },
-  { href: "/packing", label: "Ich verreise" },
+  { href: "/packing", label: "Packliste" },
 ] as const;
 
 function isActive(pathname: string, href: string): boolean {
