@@ -7,11 +7,39 @@ import { IconButton } from "@/components/ui/Button";
 import { CheckboxRow } from "@/components/ui/Field";
 import { DotsIcon } from "@/components/ui/Icons";
 import { Popover } from "@/components/ui/Popover";
+import { cn } from "@/lib/cn";
 import { ATTENTION_STATUSES, statusLabel } from "@/lib/constants";
 import { useInventory } from "@/lib/data/InventoryProvider";
-import { getAttentionEntries } from "@/lib/logic/attention";
+import { getAttentionEntries, type AttentionTone } from "@/lib/logic/attention";
 import { updateSettings } from "@/lib/logic/mutations";
 import type { StatusId } from "@/lib/types";
+
+/** Kachel-Akzentfarben passend zu den Status-Badges (siehe Badge.tsx). */
+const TONE_CLASSES: Record<
+  AttentionTone,
+  { border: string; panel: string; label: string }
+> = {
+  info: {
+    border: "border-info/30",
+    panel: "bg-info-soft",
+    label: "text-info",
+  },
+  notice: {
+    border: "border-notice/30",
+    panel: "bg-notice-soft",
+    label: "text-notice",
+  },
+  alert: {
+    border: "border-alert/30",
+    panel: "bg-alert-soft",
+    label: "text-alert",
+  },
+  neutral: {
+    border: "border-line",
+    panel: "bg-surface-soft",
+    label: "text-ink-soft",
+  },
+};
 
 /**
  * «Aufmerksamkeit erforderlich» mit persistentem Status-Filter. Der Filter
@@ -84,34 +112,45 @@ export function AttentionSection() {
         </p>
       ) : (
         <ul className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-          {entries.map(({ item, label, note }) => (
-            <li key={item.id}>
-              <Link
-                href={`/items/${item.id}`}
-                className="group block overflow-hidden rounded-3xl border border-line bg-white transition-colors hover:border-ink"
-              >
-                <ItemImage
-                  item={item}
-                  rounded="rounded-none"
-                  className="aspect-square w-full border-0 border-b border-line"
-                  textClassName="text-3xl"
-                />
-                <div className="px-4 py-3.5">
-                  <p className="truncate text-[15px] font-semibold text-ink">
-                    {item.name}
-                  </p>
-                  <p className="mt-0.5 text-[13px] font-semibold text-alert">
-                    {label}
-                  </p>
-                  {note && (
-                    <p className="mt-0.5 truncate text-[12px] text-muted">
-                      {note}
-                    </p>
+          {entries.map(({ item, label, note, tone }) => {
+            const toneClasses = TONE_CLASSES[tone];
+            return (
+              <li key={item.id}>
+                <Link
+                  href={`/items/${item.id}`}
+                  className={cn(
+                    "group block overflow-hidden rounded-3xl border bg-white transition-colors hover:border-ink",
+                    toneClasses.border,
                   )}
-                </div>
-              </Link>
-            </li>
-          ))}
+                >
+                  <ItemImage
+                    item={item}
+                    rounded="rounded-none"
+                    className="aspect-square w-full border-0 border-b border-line"
+                    textClassName="text-3xl"
+                  />
+                  <div className={cn("px-4 py-3.5", toneClasses.panel)}>
+                    <p className="truncate text-[15px] font-semibold text-ink">
+                      {item.name}
+                    </p>
+                    <p
+                      className={cn(
+                        "mt-0.5 text-[13px] font-semibold",
+                        toneClasses.label,
+                      )}
+                    >
+                      {label}
+                    </p>
+                    {note && (
+                      <p className="mt-0.5 truncate text-[12px] text-muted">
+                        {note}
+                      </p>
+                    )}
+                  </div>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       )}
     </section>

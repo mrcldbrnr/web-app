@@ -20,6 +20,8 @@
   --color-alert-soft: #fdf3f2;
   --color-notice: #92600a;
   --color-notice-soft: #fdf7ec;
+  --color-info: #1d4ed8;
+  --color-info-soft: #eff4fe;
 }
 
 html {

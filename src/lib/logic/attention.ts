@@ -2,12 +2,30 @@ import { ATTENTION_STATUSES, statusLabel } from "@/lib/constants";
 import { formatDate, isInPast } from "@/lib/format";
 import type { Item, StatusId } from "@/lib/types";
 
+/** Akzentfarbe der Kachel, passend zum hervorgehobenen Zustand/Status. */
+export type AttentionTone = "info" | "notice" | "alert" | "neutral";
+
 export interface AttentionEntry {
   item: Item;
   /** Der hervorgehobene Zustand oder Status. */
   label: string;
   /** Optionale kurze Zusatzinformation. */
   note?: string;
+  /** Farbton der Kachel, abgeleitet aus dem hervorgehobenen Zustand/Status. */
+  tone: AttentionTone;
+}
+
+/** Spiegelt die Akzentfarben der Status-Badges (siehe Badge.tsx). */
+function statusTone(status: StatusId): AttentionTone {
+  switch (status) {
+    case "maintenance_needed":
+    case "in_repair":
+      return "notice";
+    case "lent_out":
+      return "info";
+    default:
+      return "neutral";
+  }
 }
 
 /** Gegenstände mit Status «Aussortiert» lösen nie Aufmerksamkeit aus. */
@@ -63,6 +81,7 @@ export function getAttentionEntries(
 
     let label: string;
     let note: string | undefined;
+    let tone: AttentionTone;
 
     if (statusTriggers) {
       label = statusLabel(item.status) ?? "";
@@ -71,17 +90,20 @@ export function getAttentionEntries(
       if (!note && overdue) {
         note = `Wartung fällig seit ${formatDate(item.categoryData.nextMaintenance)}`;
       }
+      tone = statusTone(item.status as StatusId);
     } else if (defective) {
       label = "Defekt";
       note = overdue
         ? `Wartung fällig seit ${formatDate(item.categoryData.nextMaintenance)}`
         : undefined;
+      tone = "alert";
     } else {
       label = "Wartung überfällig";
       note = `Fällig war ${formatDate(item.categoryData.nextMaintenance)}`;
+      tone = "alert";
     }
 
-    entries.push({ item, label, note });
+    entries.push({ item, label, note, tone });
   }
 
   return entries;

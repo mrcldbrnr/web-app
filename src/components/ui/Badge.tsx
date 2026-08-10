@@ -2,13 +2,14 @@ import { cn } from "@/lib/cn";
 import { conditionLabel, statusLabel } from "@/lib/constants";
 import type { ConditionId, StatusId } from "@/lib/types";
 
-export type BadgeTone = "neutral" | "solid" | "notice" | "alert";
+export type BadgeTone = "neutral" | "solid" | "notice" | "alert" | "info";
 
 const toneClasses: Record<BadgeTone, string> = {
   neutral: "border-line text-ink-soft bg-white",
   solid: "border-ink bg-ink text-white",
   notice: "border-notice/30 bg-notice-soft text-notice",
   alert: "border-alert/30 bg-alert-soft text-alert",
+  info: "border-info/30 bg-info-soft text-info",
 };
 
 export function Badge({
@@ -39,6 +40,8 @@ export function statusTone(status: StatusId): BadgeTone {
     case "maintenance_needed":
     case "in_repair":
       return "notice";
+    case "lent_out":
+      return "info";
     case "retired":
       return "solid";
     default:
