@@ -33,7 +33,7 @@ export function ItemListRow({
   const price = formatPrice(item.purchasePrice, currencyLabel);
 
   return (
-    <div className="flex items-center transition-colors hover:bg-surface-soft">
+    <div className="flex items-center transition-colors hover:bg-brand/5">
       <Link
         href={`/items/${item.id}`}
         className="flex min-w-0 flex-1 items-center gap-4 py-3.5 pl-4 sm:pl-5"
