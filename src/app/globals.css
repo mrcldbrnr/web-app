@@ -24,6 +24,8 @@
   --color-info-soft: #eff4fe;
   --color-orange: #c2410c;
   --color-orange-soft: #fdf1e8;
+  /* Markenblau aus dem Logo (public/logo-myown.svg). */
+  --color-brand: #0000ff;
 }
 
 html {
@@ -40,6 +42,12 @@ body {
 :focus-visible {
   outline: 2px solid var(--color-ink);
   outline-offset: 2px;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--color-brand);
 }
 
 @layer components {

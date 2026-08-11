@@ -47,8 +47,8 @@ export function AppNav() {
                     className={cn(
                       "rounded-full px-4 py-2 text-[21px] font-semibold transition-colors",
                       isActive(pathname, item.href)
-                        ? "bg-surface-soft text-ink"
-                        : "text-muted hover:text-ink",
+                        ? "bg-brand/10 text-ink"
+                        : "text-brand hover:text-ink",
                     )}
                   >
                     {item.label}
@@ -90,7 +90,7 @@ export function AppNav() {
                 aria-current={isActive(pathname, item.href) ? "page" : undefined}
                 className={cn(
                   "flex h-16 flex-col items-center justify-center gap-1 text-[12px] font-semibold",
-                  isActive(pathname, item.href) ? "text-ink" : "text-muted",
+                  isActive(pathname, item.href) ? "text-ink" : "text-brand",
                 )}
               >
                 <NavIcon href={item.href} />
