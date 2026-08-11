@@ -69,7 +69,7 @@ export function DashboardSearch() {
           }}
           placeholder="Inventar durchsuchen …"
           aria-label="Inventar durchsuchen"
-          className="h-14 w-full rounded-full border border-line bg-white pr-5 pl-13 text-[16px] text-ink placeholder:text-muted focus:border-ink focus:outline-none sm:h-16 sm:text-[17px]"
+          className="search-field h-14 w-full rounded-full border border-line bg-white pr-5 pl-13 text-[16px] text-ink placeholder:text-muted focus:border-ink focus:outline-none sm:h-16 sm:text-[17px]"
         />
       </div>
 

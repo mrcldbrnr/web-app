@@ -50,6 +50,13 @@ h3 {
   color: #0a0a0a;
 }
 
+/* Aktives Suchfeld: Markenblau, 3px, ohne Abstand zum inneren Rahmen. */
+.search-field:focus-visible {
+  outline: none;
+  border-color: var(--color-brand);
+  border-width: 3px;
+}
+
 @layer components {
   /* Pill-Buttons: Primär schwarz, Sekundär weiss mit schwarzer Outline. */
   .btn {

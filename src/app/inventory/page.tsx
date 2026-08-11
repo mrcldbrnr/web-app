@@ -106,7 +106,7 @@ function InventoryView() {
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Inventar durchsuchen …"
             aria-label="Inventar durchsuchen"
-            className="h-12 w-full rounded-full border border-line bg-white pr-4 pl-12 text-[15px] text-ink placeholder:text-muted focus:border-ink focus:outline-none"
+            className="search-field h-12 w-full rounded-full border border-line bg-white pr-4 pl-12 text-[15px] text-ink placeholder:text-muted focus:border-ink focus:outline-none"
           />
         </div>
 
