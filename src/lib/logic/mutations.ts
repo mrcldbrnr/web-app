@@ -346,6 +346,34 @@ export function createPackingList(
   return { data: addItemsToPackingList(next, list.id, itemIds), list };
 }
 
+/**
+ * Dupliziert eine Packliste als Vorlage: gleiche Angaben und Gegenstände,
+ * aber neue Identität und zurückgesetzter Packfortschritt. Aussortierte
+ * Gegenstände werden dabei nicht übernommen (PRD 3.5).
+ */
+export function duplicatePackingList(
+  data: InventoryData,
+  sourceId: string,
+): { data: InventoryData; list: PackingList } {
+  const source = data.packingLists.find((list) => list.id === sourceId);
+  if (!source) throw new Error(`Packliste ${sourceId} existiert nicht`);
+
+  const itemIds = data.packingEntries
+    .filter((entry) => entry.packingListId === sourceId)
+    .map((entry) => entry.itemId);
+
+  return createPackingList(
+    data,
+    {
+      name: `${source.name} (Kopie)`,
+      startDate: source.startDate,
+      endDate: source.endDate,
+      notes: source.notes,
+    },
+    itemIds,
+  );
+}
+
 export function updatePackingList(
   data: InventoryData,
   id: string,

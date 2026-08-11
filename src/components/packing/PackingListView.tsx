@@ -273,6 +273,7 @@ export function PackingListView({ id }: { id: string }) {
           open
           onClose={() => setEditOpen(false)}
           onDeleted={() => router.push("/packing")}
+          onDuplicated={(newListId) => router.push(`/packing/${newListId}`)}
         />
       )}
     </div>

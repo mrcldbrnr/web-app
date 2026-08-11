@@ -6,25 +6,31 @@ import { ConfirmDialog } from "@/components/ui/ConfirmDialog";
 import { Field, TextInput } from "@/components/ui/Field";
 import { Modal } from "@/components/ui/Modal";
 import { useInventory } from "@/lib/data/InventoryProvider";
-import { deletePackingList, updatePackingList } from "@/lib/logic/mutations";
+import {
+  deletePackingList,
+  duplicatePackingList,
+  updatePackingList,
+} from "@/lib/logic/mutations";
 import type { PackingList } from "@/lib/types";
 
 /**
- * Schnellbearbeitung aus der Packlistenübersicht: Name, Reisedatum und
- * Löschen (PRD 3.5).
+ * Schnellbearbeitung aus der Packlistenübersicht: Name, Reisedatum,
+ * Duplizieren und Löschen (PRD 3.5).
  */
 export function PackingListQuickEdit({
   list,
   open,
   onClose,
   onDeleted,
+  onDuplicated,
 }: {
   list: PackingList;
   open: boolean;
   onClose: () => void;
   onDeleted?: () => void;
+  onDuplicated?: (newListId: string) => void;
 }) {
-  const { update } = useInventory();
+  const { data, update } = useInventory();
   const [name, setName] = useState(list.name);
   const [startDate, setStartDate] = useState(list.startDate ?? "");
   const [endDate, setEndDate] = useState(list.endDate ?? "");
@@ -47,6 +53,13 @@ export function PackingListQuickEdit({
     onClose();
   };
 
+  const duplicate = () => {
+    const result = duplicatePackingList(data, list.id);
+    update(() => result.data);
+    onClose();
+    onDuplicated?.(result.list.id);
+  };
+
   return (
     <>
       <Modal
@@ -61,6 +74,9 @@ export function PackingListQuickEdit({
               onClick={() => setConfirmDelete(true)}
             >
               Löschen
+            </Button>
+            <Button variant="secondary" onClick={duplicate}>
+              Duplizieren
             </Button>
             <Button variant="secondary" onClick={onClose}>
               Abbrechen

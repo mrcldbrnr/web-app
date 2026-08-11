@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import { PackingListQuickEdit } from "@/components/packing/PackingListQuickEdit";
 import { buttonClass, IconButton } from "@/components/ui/Button";
@@ -21,6 +22,7 @@ const GROUP_ORDER: PackingListGroup[] = ["upcoming", "undated", "past"];
 /** Packlistenübersicht (PRD 3.5). */
 export default function PackingPage() {
   const { data } = useInventory();
+  const router = useRouter();
   const [editing, setEditing] = useState<PackingList | null>(null);
 
   const grouped = useMemo(() => {
@@ -126,6 +128,7 @@ export default function PackingPage() {
           list={editing}
           open
           onClose={() => setEditing(null)}
+          onDuplicated={(newListId) => router.push(`/packing/${newListId}`)}
         />
       )}
     </div>
