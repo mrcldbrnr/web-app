@@ -69,7 +69,10 @@ export default function PackingPage() {
                 const dateLabel = formatDateRange(list.startDate, list.endDate);
 
                 return (
-                  <li key={list.id} className="card relative p-5">
+                  <li
+                    key={list.id}
+                    className="card relative p-5 transition-colors hover:bg-brand/5"
+                  >
                     <div className="flex items-start justify-between gap-2">
                       <Link
                         href={`/packing/${list.id}`}
@@ -105,7 +108,7 @@ export default function PackingPage() {
                       className="mt-4 block"
                       aria-label={`${list.name} öffnen`}
                     >
-                      <div className="h-1.5 w-full overflow-hidden rounded-full bg-surface-soft">
+                      <div className="h-1.5 w-full overflow-hidden rounded-full bg-brand/10">
                         <div
                           className="h-full rounded-full bg-ink transition-[width]"
                           style={{ width: `${percent}%` }}
