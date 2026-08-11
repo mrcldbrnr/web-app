@@ -48,7 +48,7 @@ export function InventoryOverview() {
               <li key={category.id}>
                 <Link
                   href={href}
-                  className="row-link flex items-center gap-4 px-5 py-3.5"
+                  className="flex items-center gap-4 px-5 py-3.5 transition-colors hover:bg-brand/5"
                 >
                   <span className="min-w-0 flex-1 truncate text-[15px] font-semibold text-ink">
                     {category.label}
