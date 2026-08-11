@@ -15,32 +15,24 @@ import { updateSettings } from "@/lib/logic/mutations";
 import type { StatusId } from "@/lib/types";
 
 /** Kachel-Akzentfarben passend zu den Status-Badges (siehe Badge.tsx). */
-const TONE_CLASSES: Record<
-  AttentionTone,
-  { border: string; panel: string; label: string }
-> = {
+const TONE_CLASSES: Record<AttentionTone, { panel: string; label: string }> = {
   info: {
-    border: "border-info/30",
     panel: "bg-info-soft",
     label: "text-info",
   },
   notice: {
-    border: "border-notice/30",
     panel: "bg-notice-soft",
     label: "text-notice",
   },
   orange: {
-    border: "border-orange/30",
     panel: "bg-orange-soft",
     label: "text-orange",
   },
   alert: {
-    border: "border-alert/30",
     panel: "bg-alert-soft",
     label: "text-alert",
   },
   neutral: {
-    border: "border-line",
     panel: "bg-surface-soft",
     label: "text-ink-soft",
   },
@@ -123,10 +115,7 @@ export function AttentionSection() {
               <li key={item.id} className="h-full">
                 <Link
                   href={`/items/${item.id}`}
-                  className={cn(
-                    "group flex h-full flex-col overflow-hidden rounded-3xl border bg-white transition-colors hover:border-ink",
-                    toneClasses.border,
-                  )}
+                  className="group flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-white transition-colors hover:border-2 hover:border-brand"
                 >
                   <ItemImage
                     item={item}
