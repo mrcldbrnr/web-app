@@ -33,14 +33,14 @@ export function ItemImage({
     <div
       aria-hidden="true"
       className={cn(
-        "flex items-center justify-center border border-line bg-surface-soft",
+        "flex items-center justify-center border border-line bg-white",
         rounded,
         className,
       )}
     >
       <span
         className={cn(
-          "font-bold tracking-tight text-line-strong select-none",
+          "font-light tracking-tight text-line-strong select-none",
           textClassName,
         )}
       >

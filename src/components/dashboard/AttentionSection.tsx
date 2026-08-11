@@ -120,21 +120,21 @@ export function AttentionSection() {
           {entries.map(({ item, label, note, tone }) => {
             const toneClasses = TONE_CLASSES[tone];
             return (
-              <li key={item.id}>
+              <li key={item.id} className="h-full">
                 <Link
                   href={`/items/${item.id}`}
                   className={cn(
-                    "group block overflow-hidden rounded-3xl border bg-white transition-colors hover:border-ink",
+                    "group flex h-full flex-col overflow-hidden rounded-3xl border bg-white transition-colors hover:border-ink",
                     toneClasses.border,
                   )}
                 >
                   <ItemImage
                     item={item}
                     rounded="rounded-none"
-                    className="aspect-square w-full border-0 border-b border-line"
-                    textClassName="text-3xl"
+                    className="aspect-square w-full shrink-0 border-0 border-b border-line"
+                    textClassName="text-[75px]"
                   />
-                  <div className={cn("px-4 py-3.5", toneClasses.panel)}>
+                  <div className={cn("flex-1 px-4 py-3.5", toneClasses.panel)}>
                     <p className="truncate text-[15px] font-semibold text-ink">
                       {item.name}
                     </p>
