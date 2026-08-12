@@ -79,15 +79,15 @@ h3 {
   }
 
   .btn-primary {
-    @apply bg-ink text-white hover:bg-ink-soft;
+    @apply bg-ink text-white hover:bg-brand;
   }
 
   .btn-secondary {
-    @apply border border-ink bg-white text-ink hover:bg-surface-soft;
+    @apply border border-ink bg-white text-ink hover:bg-brand/5;
   }
 
   .btn-ghost {
-    @apply text-ink hover:bg-surface-soft;
+    @apply text-ink hover:bg-brand/5;
   }
 
   .btn-danger {
