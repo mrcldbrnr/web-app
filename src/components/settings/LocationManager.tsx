@@ -186,7 +186,7 @@ export function LocationManager() {
                   )}
                 </div>
 
-                <ul className="divide-y divide-line border-t border-line bg-surface-soft">
+                <ul className="divide-y divide-line border-t border-line bg-[#f2f2ff]">
                   {subs.map((sub) => {
                     const subAffected = countItemsInSecondary(
                       data.items,
