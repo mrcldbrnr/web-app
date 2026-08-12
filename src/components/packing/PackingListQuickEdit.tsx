@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { ConfirmDialog } from "@/components/ui/ConfirmDialog";
-import { Field, TextInput } from "@/components/ui/Field";
+import { Field, TextArea, TextInput } from "@/components/ui/Field";
 import { Modal } from "@/components/ui/Modal";
 import { useInventory } from "@/lib/data/InventoryProvider";
 import {
@@ -38,6 +38,7 @@ export function PackingListQuickEdit({
   const [name, setName] = useState(list.name);
   const [startDate, setStartDate] = useState(list.startDate ?? "");
   const [endDate, setEndDate] = useState(list.endDate ?? "");
+  const [notes, setNotes] = useState(list.notes ?? "");
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [error, setError] = useState(false);
 
@@ -51,7 +52,7 @@ export function PackingListQuickEdit({
         name,
         startDate: startDate || undefined,
         endDate: startDate ? endDate || undefined : undefined,
-        notes: list.notes,
+        notes,
       }),
     );
     onClose();
@@ -144,6 +145,16 @@ export function PackingListQuickEdit({
               )}
             </Field>
           </div>
+
+          <Field label="Notizen">
+            {(id) => (
+              <TextArea
+                id={id}
+                value={notes}
+                onChange={(event) => setNotes(event.target.value)}
+              />
+            )}
+          </Field>
         </div>
       </Modal>
 

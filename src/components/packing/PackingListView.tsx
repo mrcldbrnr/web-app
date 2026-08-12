@@ -114,7 +114,7 @@ export function PackingListView({ id }: { id: string }) {
         </div>
 
         <div className="space-y-2">
-          <div className="h-2 w-full overflow-hidden rounded-full bg-surface-soft">
+          <div className="h-2 w-full overflow-hidden rounded-full bg-brand/10">
             <div
               className="h-full rounded-full bg-ink transition-[width]"
               style={{ width: `${percent}%` }}
