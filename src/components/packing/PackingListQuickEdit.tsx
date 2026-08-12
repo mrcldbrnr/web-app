@@ -23,12 +23,14 @@ export function PackingListQuickEdit({
   onClose,
   onDeleted,
   onDuplicated,
+  showDeleteButton = true,
 }: {
   list: PackingList;
   open: boolean;
   onClose: () => void;
   onDeleted?: () => void;
   onDuplicated?: (newListId: string) => void;
+  showDeleteButton?: boolean;
 }) {
   const { data, update } = useInventory();
   const [name, setName] = useState(list.name);
@@ -68,13 +70,15 @@ export function PackingListQuickEdit({
         title="Packliste bearbeiten"
         footer={
           <>
-            <Button
-              variant="danger"
-              className="mr-auto"
-              onClick={() => setConfirmDelete(true)}
-            >
-              Löschen
-            </Button>
+            {showDeleteButton && (
+              <Button
+                variant="danger"
+                className="mr-auto"
+                onClick={() => setConfirmDelete(true)}
+              >
+                Löschen
+              </Button>
+            )}
             <Button variant="secondary" onClick={duplicate}>
               Duplizieren
             </Button>

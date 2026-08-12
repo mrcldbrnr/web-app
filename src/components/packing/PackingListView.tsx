@@ -8,6 +8,7 @@ import { ItemPickerModal } from "@/components/items/ItemPickerModal";
 import { PackingListQuickEdit } from "@/components/packing/PackingListQuickEdit";
 import { Badge, statusTone } from "@/components/ui/Badge";
 import { Button, buttonClass } from "@/components/ui/Button";
+import { ConfirmDialog } from "@/components/ui/ConfirmDialog";
 import {
   ArrowLeftIcon,
   CheckIcon,
@@ -20,6 +21,7 @@ import { useInventory } from "@/lib/data/InventoryProvider";
 import { formatDateRange } from "@/lib/format";
 import {
   addItemsToPackingList,
+  deletePackingList,
   removeItemFromPackingList,
   setEntryPacked,
 } from "@/lib/logic/mutations";
@@ -33,6 +35,7 @@ export function PackingListView({ id }: { id: string }) {
   const router = useRouter();
   const [pickerOpen, setPickerOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
 
   const list = data.packingLists.find((current) => current.id === id);
 
@@ -105,7 +108,12 @@ export function PackingListView({ id }: { id: string }) {
               <PlusIcon className="h-4 w-4" />
               Gegenstände hinzufügen
             </Button>
-            <Button onClick={() => setEditOpen(true)}>Bearbeiten</Button>
+            <Button variant="danger" onClick={() => setConfirmDelete(true)}>
+              Löschen
+            </Button>
+            <Button onClick={() => setEditOpen(true)}>
+              Name/Datum bearbeiten
+            </Button>
           </div>
         </div>
 
@@ -266,10 +274,22 @@ export function PackingListView({ id }: { id: string }) {
           list={list}
           open
           onClose={() => setEditOpen(false)}
-          onDeleted={() => router.push("/packing")}
           onDuplicated={(newListId) => router.push(`/packing/${newListId}`)}
+          showDeleteButton={false}
         />
       )}
+
+      <ConfirmDialog
+        open={confirmDelete}
+        title={`«${list.name}» löschen?`}
+        description="Die Packliste und ihre Einträge werden entfernt. Die Gegenstände selbst bleiben im Inventar."
+        onCancel={() => setConfirmDelete(false)}
+        onConfirm={() => {
+          update((current) => deletePackingList(current, list.id));
+          setConfirmDelete(false);
+          router.push("/packing");
+        }}
+      />
     </div>
   );
 }
