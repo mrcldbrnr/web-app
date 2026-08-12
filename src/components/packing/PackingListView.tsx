@@ -7,12 +7,11 @@ import { ItemImage } from "@/components/items/ItemImage";
 import { ItemPickerModal } from "@/components/items/ItemPickerModal";
 import { PackingListQuickEdit } from "@/components/packing/PackingListQuickEdit";
 import { Badge, statusTone } from "@/components/ui/Badge";
-import { Button, buttonClass, IconButton } from "@/components/ui/Button";
+import { Button, buttonClass } from "@/components/ui/Button";
 import {
   ArrowLeftIcon,
   CheckIcon,
   CloseIcon,
-  DotsIcon,
   PlusIcon,
 } from "@/components/ui/Icons";
 import { cn } from "@/lib/cn";
@@ -94,20 +93,20 @@ export function PackingListView({ id }: { id: string }) {
       </Link>
 
       <div className="space-y-4">
-        <div className="flex items-start justify-between gap-3">
+        <div className="flex flex-wrap items-start justify-between gap-3">
           <div className="min-w-0">
             <h1 className="page-title">{list.name}</h1>
             {dateLabel && (
               <p className="mt-1 text-[15px] text-muted">{dateLabel}</p>
             )}
           </div>
-          <IconButton
-            label="Packliste bearbeiten"
-            className="-mr-2 shrink-0"
-            onClick={() => setEditOpen(true)}
-          >
-            <DotsIcon />
-          </IconButton>
+          <div className="flex flex-wrap gap-2">
+            <Button variant="secondary" onClick={() => setPickerOpen(true)}>
+              <PlusIcon className="h-4 w-4" />
+              Gegenstände hinzufügen
+            </Button>
+            <Button onClick={() => setEditOpen(true)}>Bearbeiten</Button>
+          </div>
         </div>
 
         <div className="space-y-2">
@@ -127,11 +126,6 @@ export function PackingListView({ id }: { id: string }) {
             {list.notes}
           </p>
         )}
-
-        <Button variant="secondary" onClick={() => setPickerOpen(true)}>
-          <PlusIcon className="h-4 w-4" />
-          Gegenstände hinzufügen
-        </Button>
       </div>
 
       {groups.length === 0 ? (
