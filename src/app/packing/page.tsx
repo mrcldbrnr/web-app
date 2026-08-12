@@ -1,11 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useMemo, useState } from "react";
-import { PackingListQuickEdit } from "@/components/packing/PackingListQuickEdit";
-import { buttonClass, IconButton } from "@/components/ui/Button";
-import { DotsIcon, PlusIcon } from "@/components/ui/Icons";
+import { useMemo } from "react";
+import { PackingListQuickMenu } from "@/components/packing/PackingListQuickMenu";
+import { buttonClass } from "@/components/ui/Button";
+import { PlusIcon } from "@/components/ui/Icons";
 import { useInventory } from "@/lib/data/InventoryProvider";
 import { formatDateRange } from "@/lib/format";
 import {
@@ -22,8 +21,6 @@ const GROUP_ORDER: PackingListGroup[] = ["upcoming", "undated", "past"];
 /** Packlistenübersicht (PRD 3.5). */
 export default function PackingPage() {
   const { data } = useInventory();
-  const router = useRouter();
-  const [editing, setEditing] = useState<PackingList | null>(null);
 
   const grouped = useMemo(() => {
     const map = new Map<PackingListGroup, PackingList[]>();
@@ -94,13 +91,9 @@ export default function PackingPage() {
                             .join(" · ")}
                         </p>
                       </Link>
-                      <IconButton
-                        label={`${list.name} bearbeiten`}
-                        className="-mt-1 -mr-2 shrink-0"
-                        onClick={() => setEditing(list)}
-                      >
-                        <DotsIcon />
-                      </IconButton>
+                      <div className="-mt-1 -mr-2 shrink-0">
+                        <PackingListQuickMenu list={list} />
+                      </div>
                     </div>
 
                     <Link
@@ -125,15 +118,6 @@ export default function PackingPage() {
           </section>
         );
       })}
-
-      {editing && (
-        <PackingListQuickEdit
-          list={editing}
-          open
-          onClose={() => setEditing(null)}
-          onDuplicated={(newListId) => router.push(`/packing/${newListId}`)}
-        />
-      )}
     </div>
   );
 }
