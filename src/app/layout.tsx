@@ -30,6 +30,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <main className="mx-auto w-full max-w-6xl px-4 pt-6 pb-28 sm:px-6 sm:pt-8 md:pb-16">
             <InventoryGate>{children}</InventoryGate>
           </main>
+          <footer className="h-[30px] bg-brand" />
+          {/* Platzhalter, damit der Footer nicht hinter der fixen mobilen Navigation verschwindet. */}
+          <div aria-hidden className="h-[calc(4rem+env(safe-area-inset-bottom))] md:hidden" />
         </InventoryProvider>
       </body>
     </html>
