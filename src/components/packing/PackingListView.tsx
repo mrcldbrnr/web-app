@@ -22,6 +22,7 @@ import { formatDateRange } from "@/lib/format";
 import {
   addItemsToPackingList,
   deletePackingList,
+  duplicatePackingList,
   removeItemFromPackingList,
   setEntryPacked,
 } from "@/lib/logic/mutations";
@@ -85,6 +86,12 @@ export function PackingListView({ id }: { id: string }) {
   const dateLabel = formatDateRange(list.startDate, list.endDate);
   const inListIds = new Set(entries.map((entry) => entry.itemId));
 
+  const duplicate = () => {
+    const result = duplicatePackingList(data, list.id);
+    update(() => result.data);
+    router.push(`/packing/${result.list.id}`);
+  };
+
   return (
     <div className="space-y-8">
       <div className="flex flex-wrap items-center justify-between gap-3">
@@ -95,14 +102,7 @@ export function PackingListView({ id }: { id: string }) {
           <ArrowLeftIcon className="h-4 w-4" />
           Alle Packlisten
         </Link>
-        <div className="flex flex-wrap gap-2">
-          <Button variant="danger" onClick={() => setConfirmDelete(true)}>
-            Löschen
-          </Button>
-          <Button onClick={() => setEditOpen(true)}>
-            Name/Datum bearbeiten
-          </Button>
-        </div>
+        <Button onClick={() => setEditOpen(true)}>Name/Datum bearbeiten</Button>
       </div>
 
       <div className="space-y-4">
@@ -131,10 +131,20 @@ export function PackingListView({ id }: { id: string }) {
           </p>
         )}
 
-        <Button variant="secondary" onClick={() => setPickerOpen(true)}>
-          <PlusIcon className="h-4 w-4" />
-          Gegenstände hinzufügen
-        </Button>
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <Button variant="secondary" onClick={() => setPickerOpen(true)}>
+            <PlusIcon className="h-4 w-4" />
+            Gegenstände hinzufügen
+          </Button>
+          <div className="flex flex-wrap gap-2">
+            <Button variant="secondary" onClick={duplicate}>
+              Duplizieren
+            </Button>
+            <Button variant="danger" onClick={() => setConfirmDelete(true)}>
+              Löschen
+            </Button>
+          </div>
+        </div>
       </div>
 
       {groups.length === 0 ? (
@@ -275,8 +285,8 @@ export function PackingListView({ id }: { id: string }) {
           list={list}
           open
           onClose={() => setEditOpen(false)}
-          onDuplicated={(newListId) => router.push(`/packing/${newListId}`)}
           showDeleteButton={false}
+          showDuplicateButton={false}
         />
       )}
 

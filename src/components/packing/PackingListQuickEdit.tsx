@@ -24,6 +24,7 @@ export function PackingListQuickEdit({
   onDeleted,
   onDuplicated,
   showDeleteButton = true,
+  showDuplicateButton = true,
 }: {
   list: PackingList;
   open: boolean;
@@ -31,6 +32,7 @@ export function PackingListQuickEdit({
   onDeleted?: () => void;
   onDuplicated?: (newListId: string) => void;
   showDeleteButton?: boolean;
+  showDuplicateButton?: boolean;
 }) {
   const { data, update } = useInventory();
   const [name, setName] = useState(list.name);
@@ -79,9 +81,11 @@ export function PackingListQuickEdit({
                 Löschen
               </Button>
             )}
-            <Button variant="secondary" onClick={duplicate}>
-              Duplizieren
-            </Button>
+            {showDuplicateButton && (
+              <Button variant="secondary" onClick={duplicate}>
+                Duplizieren
+              </Button>
+            )}
             <Button variant="secondary" onClick={onClose}>
               Abbrechen
             </Button>
