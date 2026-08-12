@@ -89,8 +89,10 @@ export function AppNav() {
                 href={item.href}
                 aria-current={isActive(pathname, item.href) ? "page" : undefined}
                 className={cn(
-                  "flex h-16 flex-col items-center justify-center gap-1 text-[12px] font-semibold",
-                  isActive(pathname, item.href) ? "text-ink" : "text-brand",
+                  "mx-1 my-2 flex h-12 flex-col items-center justify-center gap-1 rounded-2xl text-[12px] font-semibold transition-colors",
+                  isActive(pathname, item.href)
+                    ? "bg-brand/10 text-ink"
+                    : "text-brand",
                 )}
               >
                 <NavIcon href={item.href} />
