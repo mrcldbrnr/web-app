@@ -87,30 +87,30 @@ export function PackingListView({ id }: { id: string }) {
 
   return (
     <div className="space-y-8">
-      <Link
-        href="/packing"
-        className="inline-flex items-center gap-2 text-[14px] font-semibold text-muted hover:text-ink"
-      >
-        <ArrowLeftIcon className="h-4 w-4" />
-        Alle Packlisten
-      </Link>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <Link
+          href="/packing"
+          className="inline-flex items-center gap-2 text-[14px] font-semibold text-muted hover:text-ink"
+        >
+          <ArrowLeftIcon className="h-4 w-4" />
+          Alle Packlisten
+        </Link>
+        <div className="flex flex-wrap gap-2">
+          <Button variant="danger" onClick={() => setConfirmDelete(true)}>
+            Löschen
+          </Button>
+          <Button onClick={() => setEditOpen(true)}>
+            Name/Datum bearbeiten
+          </Button>
+        </div>
+      </div>
 
       <div className="space-y-4">
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <div className="min-w-0">
-            <h1 className="page-title">{list.name}</h1>
-            {dateLabel && (
-              <p className="mt-1 text-[15px] text-muted">{dateLabel}</p>
-            )}
-          </div>
-          <div className="flex flex-wrap gap-2">
-            <Button variant="danger" onClick={() => setConfirmDelete(true)}>
-              Löschen
-            </Button>
-            <Button onClick={() => setEditOpen(true)}>
-              Name/Datum bearbeiten
-            </Button>
-          </div>
+        <div className="min-w-0">
+          <h1 className="page-title">{list.name}</h1>
+          {dateLabel && (
+            <p className="mt-1 text-[15px] text-muted">{dateLabel}</p>
+          )}
         </div>
 
         <div className="space-y-2">
