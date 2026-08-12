@@ -104,10 +104,6 @@ export function PackingListView({ id }: { id: string }) {
             )}
           </div>
           <div className="flex flex-wrap gap-2">
-            <Button variant="secondary" onClick={() => setPickerOpen(true)}>
-              <PlusIcon className="h-4 w-4" />
-              Gegenstände hinzufügen
-            </Button>
             <Button variant="danger" onClick={() => setConfirmDelete(true)}>
               Löschen
             </Button>
@@ -134,6 +130,11 @@ export function PackingListView({ id }: { id: string }) {
             {list.notes}
           </p>
         )}
+
+        <Button variant="secondary" onClick={() => setPickerOpen(true)}>
+          <PlusIcon className="h-4 w-4" />
+          Gegenstände hinzufügen
+        </Button>
       </div>
 
       {groups.length === 0 ? (
