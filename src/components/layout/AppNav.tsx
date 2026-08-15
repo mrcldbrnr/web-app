@@ -25,7 +25,7 @@ export function AppNav() {
 
   return (
     <>
-      <header className="sticky top-0 z-30 border-b border-line bg-white/90 backdrop-blur">
+      <header className="sticky top-0 z-30 border-b border-line bg-white">
         <div className="relative mx-auto flex h-16 max-w-6xl items-center gap-6 px-4 sm:px-6">
           <Link href="/" aria-label="myown – zum Dashboard" className="shrink-0">
             {/* eslint-disable-next-line @next/next/no-img-element -- statisches SVG-Logo aus /public */}

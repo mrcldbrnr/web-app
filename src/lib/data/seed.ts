@@ -45,6 +45,8 @@ const seedItems: SeedItem[] = [
   {
     id: "item_sofa",
     name: "Sofa 3-Sitzer",
+    image:
+      "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNDAgMjQwIj48cmVjdCB3aWR0aD0iMjQwIiBoZWlnaHQ9IjI0MCIgZmlsbD0iI2Y2ZjZmNSIvPjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzBhMGEwYSIgc3Ryb2tlLXdpZHRoPSI2IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxyZWN0IHg9IjQ2IiB5PSIxMDQiIHdpZHRoPSIxNDgiIGhlaWdodD0iNTIiIHJ4PSIxMiIvPjxwYXRoIGQ9Ik00NiAxNTZ2MjRNMTk0IDE1NnYyNE00NiAxMjhhMTYgMTYgMCAwMC0xNiAxNnYxMGExMCAxMCAwIDAwMTAgMTBoNk0xOTQgMTI4YTE2IDE2IDAgMDExNiAxNnYxMGExMCAxMCAwIDAxLTEwIDEwaC02Ii8+PGxpbmUgeDE9IjEyMCIgeTE9IjEwNCIgeDI9IjEyMCIgeTI9IjE1MCIvPjwvZz48L3N2Zz4=",
     brand: "Micasa",
     category: "furniture",
     locationPrimaryId: "loc_wohnzimmer",
@@ -138,6 +140,8 @@ const seedItems: SeedItem[] = [
   {
     id: "item_espressomaschine",
     name: "Espressomaschine",
+    image:
+      "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNDAgMjQwIj48cmVjdCB3aWR0aD0iMjQwIiBoZWlnaHQ9IjI0MCIgZmlsbD0iI2Y2ZjZmNSIvPjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzBhMGEwYSIgc3Ryb2tlLXdpZHRoPSI2IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxyZWN0IHg9IjU4IiB5PSI1MiIgd2lkdGg9IjEyNCIgaGVpZ2h0PSI3MiIgcng9IjgiLz48bGluZSB4MT0iMTIwIiB5MT0iMTI0IiB4Mj0iMTIwIiB5Mj0iMTQ4Ii8+PHBhdGggZD0iTTk2IDE3OGEyNCAxNiAwIDAwNDggMHoiLz48bGluZSB4MT0iOTYiIHkxPSIxNzgiIHgyPSI5NiIgeTI9IjE2NCIvPjxsaW5lIHgxPSIxNDQiIHkxPSIxNzgiIHgyPSIxNDQiIHkyPSIxNjQiLz48L2c+PC9zdmc+",
     brand: "De'Longhi",
     category: "household",
     locationPrimaryId: "loc_kueche",
@@ -179,6 +183,8 @@ const seedItems: SeedItem[] = [
   {
     id: "item_macbook",
     name: "MacBook Pro 14",
+    image:
+      "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNDAgMjQwIj48cmVjdCB3aWR0aD0iMjQwIiBoZWlnaHQ9IjI0MCIgZmlsbD0iI2Y2ZjZmNSIvPjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzBhMGEwYSIgc3Ryb2tlLXdpZHRoPSI2IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxyZWN0IHg9IjcyIiB5PSI1OCIgd2lkdGg9Ijk2IiBoZWlnaHQ9IjY2IiByeD0iNiIvPjxwYXRoIGQ9Ik01MCAxNThoMTQwbDE0IDIySDM2eiIvPjxsaW5lIHgxPSIxMDQiIHkxPSIxNzAiIHgyPSIxMzYiIHkyPSIxNzAiLz48L2c+PC9zdmc+",
     brand: "Apple",
     category: "electronics",
     locationPrimaryId: "loc_buero",
@@ -206,6 +212,8 @@ const seedItems: SeedItem[] = [
   {
     id: "item_kopfhoerer",
     name: "Kopfhörer WH-1000XM4",
+    image:
+      "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNDAgMjQwIj48cmVjdCB3aWR0aD0iMjQwIiBoZWlnaHQ9IjI0MCIgZmlsbD0iI2Y2ZjZmNSIvPjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzBhMGEwYSIgc3Ryb2tlLXdpZHRoPSI2IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik02MiAxMzJ2LThhNTggNTggMCAwMTExNiAwdjgiLz48cmVjdCB4PSI0NiIgeT0iMTI2IiB3aWR0aD0iMzAiIGhlaWdodD0iNDYiIHJ4PSIxMiIvPjxyZWN0IHg9IjE2NCIgeT0iMTI2IiB3aWR0aD0iMzAiIGhlaWdodD0iNDYiIHJ4PSIxMiIvPjwvZz48L3N2Zz4=",
     brand: "Sony",
     category: "electronics",
     locationPrimaryId: "loc_buero",
@@ -279,6 +287,8 @@ const seedItems: SeedItem[] = [
   {
     id: "item_kindle",
     name: "Kindle Paperwhite",
+    image:
+      "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNDAgMjQwIj48cmVjdCB3aWR0aD0iMjQwIiBoZWlnaHQ9IjI0MCIgZmlsbD0iI2Y2ZjZmNSIvPjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzBhMGEwYSIgc3Ryb2tlLXdpZHRoPSI2IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxyZWN0IHg9Ijc4IiB5PSI0MCIgd2lkdGg9Ijg0IiBoZWlnaHQ9IjE2MCIgcng9IjEwIi8+PGxpbmUgeDE9Ijk2IiB5MT0iNzYiIHgyPSIxNDQiIHkyPSI3NiIvPjxsaW5lIHgxPSI5NiIgeTE9Ijk2IiB4Mj0iMTQ0IiB5Mj0iOTYiLz48bGluZSB4MT0iOTYiIHkxPSIxMTYiIHgyPSIxMjgiIHkyPSIxMTYiLz48L2c+PC9zdmc+",
     brand: "Amazon",
     category: "electronics",
     locationPrimaryId: "loc_schlafzimmer",
@@ -291,6 +301,8 @@ const seedItems: SeedItem[] = [
   {
     id: "item_velo",
     name: "Velo Trek Marlin 7",
+    image:
+      "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNDAgMjQwIj48cmVjdCB3aWR0aD0iMjQwIiBoZWlnaHQ9IjI0MCIgZmlsbD0iI2Y2ZjZmNSIvPjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzBhMGEwYSIgc3Ryb2tlLXdpZHRoPSI2IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxjaXJjbGUgY3g9IjYyIiBjeT0iMTY0IiByPSIzMCIvPjxjaXJjbGUgY3g9IjE3OCIgY3k9IjE2NCIgcj0iMzAiLz48cGF0aCBkPSJNNjIgMTY0bDQwLTY0aDQ4bDI4IDY0TTEwMiAxMDBsMjQgMzRoNTJNMTE4IDc2aDM0Ii8+PC9nPjwvc3ZnPg==",
     brand: "Trek",
     category: "sports",
     locationPrimaryId: "loc_keller",
