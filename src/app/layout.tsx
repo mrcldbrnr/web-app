@@ -24,7 +24,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="de" className={`${figtree.variable} h-full antialiased`}>
-      <body className="min-h-full bg-surface">
+      <body className="min-h-full overflow-x-hidden bg-surface">
         <InventoryProvider>
           <AppNav />
           <main className="mx-auto w-full max-w-6xl px-4 pt-6 pb-28 sm:px-6 sm:pt-8 md:pb-16">
