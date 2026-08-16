@@ -87,14 +87,13 @@ export function ItemDetailView({ id }: { id: string }) {
   return (
     <div className="space-y-8">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <button
-          type="button"
-          onClick={() => router.back()}
+        <Link
+          href="/inventory"
           className="inline-flex items-center gap-2 text-[14px] font-semibold text-muted hover:text-ink"
         >
           <ArrowLeftIcon className="h-4 w-4" />
-          Zurück
-        </button>
+          Zum Inventar
+        </Link>
 
         <div className="flex flex-wrap gap-2">
           {data.packingLists.length > 0 && !retired && (
