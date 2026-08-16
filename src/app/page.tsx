@@ -14,7 +14,7 @@ export default function DashboardPage() {
       />
 
       <div className="space-y-10 sm:space-y-12">
-        <div className="mx-auto mt-[30px] max-w-2xl space-y-5 text-center">
+        <div className="mx-auto max-w-2xl space-y-5 pt-[30px] text-center">
           <h1 className="page-title">Was suchst du?</h1>
           <DashboardSearch />
         </div>
