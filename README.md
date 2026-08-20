@@ -69,6 +69,11 @@ ohne Zusatzkonfiguration). Für eine produktive, mehrgeräte-fähige Nutzung
 sollte `localStorageStore` durch eine Supabase/PostgreSQL-Anbindung ersetzt
 werden (Interface: `InventoryStore`).
 
+**Test-URL:** https://web-app-zeta-ruddy-63.vercel.app
+(Vercel Authentication/Standard Protection ist aktiv – Preview-Deployments
+verlangen einen eingeloggten Vercel-Account, die Produktions-Domain bleibt
+bewusst öffentlich zugänglich, siehe Security-Check unten.)
+
 ## Security-Check
 
 Letzte Prüfung: 2026-08-15, anhand der Checkliste „Security-Checkliste für
