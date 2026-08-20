@@ -6,7 +6,7 @@ import { useMemo, useState } from "react";
 import { ItemImage } from "@/components/items/ItemImage";
 import { ItemPickerModal } from "@/components/items/ItemPickerModal";
 import { PackingListQuickEdit } from "@/components/packing/PackingListQuickEdit";
-import { Badge, statusTone } from "@/components/ui/Badge";
+import { Badge, ConditionBadge, statusTone } from "@/components/ui/Badge";
 import { Button, buttonClass } from "@/components/ui/Button";
 import { ConfirmDialog } from "@/components/ui/ConfirmDialog";
 import {
@@ -158,6 +158,7 @@ export function PackingListView({ id }: { id: string }) {
             <ul className="card divide-y divide-line overflow-hidden">
               {group.entries.map(({ entry, item }) => {
                 const retired = item.status === "retired";
+                const defective = item.condition === "defective";
                 const problematic =
                   item.status !== undefined &&
                   ATTENTION_STATUSES.includes(item.status);
@@ -207,6 +208,9 @@ export function PackingListView({ id }: { id: string }) {
                         </span>
                         <span className="mt-0.5 flex flex-wrap items-center gap-1.5">
                           {retired && <Badge tone="solid">Aussortiert</Badge>}
+                          {!retired && defective && (
+                            <ConditionBadge condition={item.condition} />
+                          )}
                           {!retired && problematic && item.status && (
                             <Badge tone={statusTone(item.status)}>
                               {statusLabel(item.status)}
