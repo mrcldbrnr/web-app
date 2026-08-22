@@ -133,18 +133,17 @@ liegen.
 8. **Abhängigkeiten** – ✅ Alle 9 Pakete in `package.json` sind real und
    plausibel (Next.js, React, Tailwind, ESLint, TypeScript – keine
    Halluzinationen). ✅ `package-lock.json` ist committed. ✅
-   `npm audit`: 0 Vulnerabilities. 🔍 Dependabot Alerts/Security Updates im
-   GitHub-Repo aktiviert: nicht einsehbar ohne Repo-Admin-Zugriff, bitte in
-   den [Repo-Einstellungen](https://github.com/mrcldbrnr/web-app/settings/security_analysis)
-   prüfen.
+   `npm audit`: 0 Vulnerabilities. ✅ **Dependabot Alerts und Security
+   Updates aktiviert (2026-08-20)**, siehe
+   [Repo-Einstellungen](https://github.com/mrcldbrnr/web-app/settings/security_analysis).
 9. **GitHub/Repo-Hygiene** – ⚠️ **Hinweis:** Das Repository ist öffentlich
    (`visibility: public`) – kein Fehler an sich (siehe Punkt 1, keine
    Secrets gefunden), aber der komplette Quellcode ist für alle einsehbar.
    ➖ Keine GitHub-Actions-Workflows vorhanden (`.github/` existiert nicht),
-   die entsprechenden Prüfpunkte entfallen. 🔍 Force-Push-Schutz auf `main`:
-   ohne Admin-Token nicht abfragbar, bitte in den
-   [Branch-Protection-Einstellungen](https://github.com/mrcldbrnr/web-app/settings/branches)
-   prüfen und aktivieren.
+   die entsprechenden Prüfpunkte entfallen. ✅ **Force-Push-Schutz auf
+   `main` aktiviert (2026-08-20)** via Ruleset (Branch targeting: Include
+   default branch; Block force pushes, Restrict deletions), siehe
+   [Rules-Einstellungen](https://github.com/mrcldbrnr/web-app/settings/rules).
 10. **Umgang mit fremden Eingaben** – ✅ Kein `dangerouslySetInnerHTML`, kein
     `eval`/`new Function` im Code. ✅ Datei-Uploads (Foto/Dokumente) sind auf
     Bildtypen limitiert bzw. werden client-seitig verkleinert, bevor sie als
